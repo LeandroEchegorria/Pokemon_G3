@@ -13,8 +13,8 @@ const usePokemon = (idPokemon) => {
         const img = pokemonInfo.sprites.other.dream_world.front_default
         const tipo = pokemonInfo.types.map((typeInfo) => typeInfo.type.name).join(", ")
         const abilities = pokemonInfo.abilities.map((ability) => ability.ability.name)
-        const { weight, height, name } = pokemonInfo
-        setPokemon({ tipo, weight, height, name, abilities, img })
+        const { id, weight, height, name } = pokemonInfo
+        setPokemon({ id, tipo, weight, height, name, abilities, img })
 
         // Obtener la categoría del Pokémon
         const speciesUrl = pokemonInfo.species.url
@@ -22,6 +22,8 @@ const usePokemon = (idPokemon) => {
       })
       .then((response) => response.json())
       .then((speciesInfo) => {
+        const evolutionChainUrl = speciesInfo.evolution_chain.url
+        setPokemon((pokemonExistente) => ({ ...pokemonExistente, evolutionChainUrl }))
         for (const flavorTextEntry of speciesInfo.flavor_text_entries) {
           if (flavorTextEntry.language.name === "es") {
             const category = speciesInfo.genera.find((genera) => genera.language.name === "es").genus

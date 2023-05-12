@@ -9,6 +9,7 @@ export default function Pagination({ handleIdChange, idPokemon }) {
   }, [idPokemon])
 
   async function fetchPagination() {
+    // Guardar referencias a anterior/siguiente pokemon en el estado
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${idPokemon - 2}&limit=3`
     const res = await fetch(url)
                   .then(response => response.json())
