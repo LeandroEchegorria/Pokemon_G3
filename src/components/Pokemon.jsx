@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react"
-import usePokemon from "../hooks/usePokemon"
-
-export default function pokeInfo({ idPokemon }) {
-  const [pokemon] = usePokemon(idPokemon)
+export default function pokeInfo({ pokemon }) {
 
   if (pokemon === null) return <div>Loading..</div>
 
@@ -16,7 +12,7 @@ export default function pokeInfo({ idPokemon }) {
             src={pokemon.img}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm title-font text-gray-500 tracking-widest">N.º {idPokemon}</h2>
+            <h2 className="text-sm title-font text-gray-500 tracking-widest">N.º {pokemon.id}</h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{pokemon.name}</h1>
             <div className="flex mb-4"></div>
             <p className="leading-relaxed">{pokemon.description}</p>
